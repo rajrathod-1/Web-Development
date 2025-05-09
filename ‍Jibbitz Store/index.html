@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jibbitz - Customize Your Crocs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet"> <!-- Fixed this path -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.css">
+    <link href="search/search.css" rel="stylesheet"> <!-- Already correct -->
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <span class="logo-text">Jibbitz</span>
+                <span class="logo-tagline">Customize Your Crocs</span>
+            </a>
+            <div class="d-flex align-items-center">
+                <a href="./cart/index.html" class="position-relative me-4 text-decoration-none text-dark" id="cartIcon">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                    <div id="cartPreview" class="cart-preview" style="display: none;">
+                        <ul id="cartItemsList"></ul>
+                        <div id="cartSubtotal"></div>
+                        <button class="btn btn-primary" id="viewCartButton">View Cart</button>
+                    </div>
+                </a>
+                
+                
+                <!--Added id name here for PROFILE-->
+                <div class="profile-icon" id = "profile">
+                    <img src="/images/defaultProfileIcon.png" alt="Profile" class="rounded-circle">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="search-container position-relative">
+        <div class="container d-flex">
+            <button class="btn btn-primary m-2" type="button" data-bs-toggle="collapse" data-bs-target="#filtersMenu">
+                <i class="fas fa-list fa-md"></i>
+            </button>
+
+            <div class="input-group m-2 position-relative">
+                <span class="input-group-text">
+                    <i class="fas fa-search"  id="searchIcon"></i>
+                </span>
+                <input type="text" class="form-control form-control-lg" id="searchInput" placeholder="Search for Jibbitz...">
+            </div>
+            <div id="suggestionsBox" class="search-suggestions"></div> <!-- Added suggestion box -->
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    
+
+    <div class="container mt-4 d-flex">  
+        <!--Had to change class name to make work with css-->
+        <div class="collapse collapse-horizontal" id="filtersMenu">
+          <div class="card card-body mx-3" style="width: 300px;">
+            Filters
+            <!--Create functional dropdown for colours-->
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropDownMenuButtonColour" data-bs-toggle="collapse" data-bs-target="#colourDropdown" aria-expanded="false">
+                    Colours
+                </button>
+                <div id="colourDropdown" class="collapse">
+                    <div class="checkForm d-flex flex-column" id="colourForm">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox1">
+                            <label class="form-check-label" for="colour-checkbox1">
+                                Red
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox2">
+                            <label class="form-check-label" for="colour-checkbox2">
+                                Orange
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox3">
+                            <label class="form-check-label" for="colour-checkbox3">
+                                Yellow
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox4">
+                            <label class="form-check-label" for="colour-checkbox4">
+                                Green
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox5">
+                            <label class="form-check-label" for="colour-checkbox5">
+                                Blue
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox6">
+                            <label class="form-check-label" for="colour-checkbox6">
+                                Purple
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox7">
+                            <label class="form-check-label" for="colour-checkbox7">
+                                Multicoloured
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="colour-checkbox8">
+                            <label class="form-check-label" for="colour-checkbox8">
+                                Pink
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="priceFilter">
+                <h5>Filter by Price</h5>
+                <div id="priceSlider" style="margin: 20px 0;"></div>
+                <p>Price Range: <span id="priceRange">0 - 1000</span></p>
+            </div>
+            
+            
+
+          </div>
+        </div>
+        
+        <div class="row flex-grow-1" id="productGrid">
+            <!-- Product cards will be generated here -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="./script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.js"></script>
+</body>
+</html>
